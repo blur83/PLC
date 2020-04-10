@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Data Selfie </title>
+</head>
+
+<body>
+    <h1>Selfie</h1>
+    <script>
+        getData();
+        async function getData() {
+            const response = await fetch('/api');
+            const data = await response.json();
+            console.log(data);
+
+            for (item of data) {
+                const root = document.createElement('div');
+                const lat = document.createElement('div');
+                lat.textContent = `mood: ${item.latitude}`;
+                const lon = document.createElement('div');
+                lon.textContent = `longitude: ${item.longitude}`
+
+                root.append(lat, lon);
+                document.body.append(root);
+            }
+
+        };
+
+    </script>
+
+</body>
